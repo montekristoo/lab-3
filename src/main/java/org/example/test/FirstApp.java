@@ -3,6 +3,7 @@ package org.example.test;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -13,7 +14,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class HelloApplication extends Application {
+public class FirstApp extends Application {
     @Override
     public void start(Stage primaryStage) {
         Image image = new Image("file:src/main/resources/problem.png");
@@ -85,7 +86,16 @@ public class HelloApplication extends Application {
             double a = Double.parseDouble(textField2.getText());
             double b = Double.parseDouble(textField3.getText());
 
-            double result = 0;
+            if (a == 0 && b == 0) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("Error");
+                alert.setContentText("A and B cannot be 0 at the same time");
+                alert.showAndWait();
+                return;
+            }
+
+            double result;
 
             if (x <= 7) {
                 result = x + 4 * Math.pow(a, 2) + Math.pow(b, 2);
